@@ -1,0 +1,19 @@
+---
+- name: "Playbook to Selinon from thoth"
+  tags:
+    - openshift
+    - thoth
+    - operations
+
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+  - fail: msg="Bailing out. this play requires 'THOTH_NAMESPACE'"
+    when: THOTH_NAMESPACE is not defined
+
+  - name: Deprovision Thoth
+    command: "oc delete --namespace={{ THOTH_NAMESPACE }} \
+      bc,configmap,cronjob,dc,is,pod,role,rolebinding,route,\
+      secret,svc,sa,template,clusterrole --selector 'app=selinon'"
