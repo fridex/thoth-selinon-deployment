@@ -124,7 +124,7 @@
   #
   - name: "Create Redis template"
     command: oc create --namespace {{ SELINON_NAMESPACE }} \
-      --filename https://raw.githubusercontent.com/fridex/demo-deployment/master/openshift/redis_deployment_config.yaml
+      --filename https://raw.githubusercontent.com/fridex/thoth-selinon-deployment/master/openshift/redis_deployment_config.yaml
     when: DEPLOY_REDIS
 
   - name: "Create Redis from template"
