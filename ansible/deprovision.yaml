@@ -17,3 +17,6 @@
     command: "oc delete --namespace={{ THOTH_NAMESPACE }} \
       bc,configmap,cronjob,dc,is,pod,role,rolebinding,route,\
       secret,svc,sa,template,clusterrole --selector 'app=selinon'"
+  - name: delete secrets and configmaps
+    command: oc delete secret/selinon configmap/selinon
+    ignore_errors: True
