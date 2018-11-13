@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Template
-labels:
-  template: rabbitmq-deploymentconfig
-  selinon: 1.0.0
 metadata:
   name: rabbitmq-deploymentconfig
+  labels:
+    template: rabbitmq-deploymentconfig
+    selinon: 1.0.0
   annotations:
-    description: Selinon Celery Flower
+    description: Selinon Celery RabbitMQ
     openshift.io/display-name: 'Selinon: RabbitMQ'
     version: 1.0.0
     tags: poc,selinon,rabbitmq
@@ -17,7 +17,7 @@ metadata:
 objects:
 
 - kind: Route
-  apiVersion: v1
+  apiVersion: route.openshift.io/v1
   metadata:
     name: rabbitmq
     labels:
@@ -51,7 +51,7 @@ objects:
     selector:
       service: rabbitmq
 
-- apiVersion: v1
+- apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
   metadata:
     labels:
